@@ -125,11 +125,6 @@
       margin-bottom: 1.5rem;
     }
 
-    .epedev {
-      color: var(--primary);
-      text-shadow: 0 0 10px var(--primary);
-    }
-
     nav {
       background-color: rgba(10, 20, 10, 0.8);
       backdrop-filter: blur(5px);
@@ -319,60 +314,6 @@
       font-size: 1.3rem;
     }
 
-    .timeline {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: rgba(0, 255, 0, 0.3);
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 40px;
-      width: 50%;
-      padding: 20px;
-      background-color: rgba(20, 30, 20, 0.7);
-      border: 1px solid rgba(0, 255, 0, 0.3);
-      border-radius: 5px;
-    }
-
-    .timeline-item:nth-child(odd) {
-      left: 0;
-    }
-
-    .timeline-item:nth-child(even) {
-      left: 50%;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: var(--primary);
-      border-radius: 50%;
-      top: 30px;
-      z-index: 1;
-    }
-
-    .timeline-item:nth-child(odd)::before {
-      right: -10px;
-    }
-
-    .timeline-item:nth-child(even)::before {
-      left: -10px;
-    }
-
     .ctf-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -416,22 +357,6 @@
       font-size: 3rem;
       color: var(--primary);
       margin-bottom: 15px;
-    }
-
-    .progress-bar {
-      height: 10px;
-      background-color: #222;
-      border-radius: 5px;
-      margin: 10px 0;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background-color: var(--primary);
-      border-radius: 5px;
-      width: 0;
-      transition: width 1.5s ease-out;
     }
 
     .contact-form {
@@ -553,121 +478,6 @@
       box-shadow: 0 0 5px var(--primary);
     }
 
-    /* Hacking Tools Section */
-    .hacking-tools {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin: 30px 0;
-      flex-wrap: wrap;
-    }
-
-    .tool {
-      padding: 15px 25px;
-      background: rgba(0, 40, 0, 0.5);
-      border: 1px solid var(--primary);
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .tool:hover {
-      background: rgba(0, 80, 0, 0.7);
-      transform: translateY(-3px);
-    }
-
-    .tool.active {
-      background: rgba(0, 100, 0, 0.8);
-      box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
-    }
-
-    /* Security Level Animation */
-    .security-level {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .level-gauge {
-      height: 20px;
-      background: #222;
-      border-radius: 10px;
-      margin: 10px 0;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .level-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #ff3333, #0f0, #0ff);
-      width: 70%;
-      transition: width 1s;
-    }
-
-    .level-text {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-
-    /* Password Cracker */
-    .password-cracker {
-      margin: 20px 0;
-      padding: 15px;
-      background-color: rgba(10, 20, 10, 0.7);
-      border: 1px solid var(--hacker-red);
-      border-radius: 5px;
-    }
-
-    .cracker-display {
-      height: 100px;
-      overflow: hidden;
-      border: 1px solid var(--primary);
-      margin: 10px 0;
-      padding: 10px;
-      font-family: 'VT323', monospace;
-      font-size: 1.2rem;
-      color: var(--hacker-red);
-    }
-
-    .cracker-controls {
-      display: flex;
-      gap: 10px;
-    }
-
-    .cracker-btn {
-      flex: 1;
-      padding: 8px;
-      background-color: rgba(0, 60, 0, 0.7);
-      color: var(--text);
-      border: 1px solid var(--primary);
-      border-radius: 3px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .cracker-btn:hover {
-      background-color: rgba(0, 100, 0, 0.7);
-    }
-
-    /* Scan Animation */
-    .scan-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--hacker-red), transparent);
-      z-index: 1000;
-      pointer-events: none;
-      display: none;
-    }
-
     /* Responsive Design */
     @media (max-width: 768px) {
       h1 {
@@ -685,21 +495,6 @@
       
       nav li {
         margin: 5px 0;
-      }
-      
-      .timeline::before {
-        left: 20px;
-      }
-      
-      .timeline-item {
-        width: 100%;
-        left: 0 !important;
-        padding-left: 50px;
-      }
-      
-      .timeline-item::before {
-        left: 10px !important;
-        right: auto !important;
       }
       
       .skills-grid, .ctf-grid {
@@ -729,7 +524,6 @@
 <body>
   <!-- Matrix background effect -->
   <div class="matrix-bg" id="matrix"></div>
-  <div class="scan-animation" id="scanAnimation"></div>
 
   <header>
     <div class="container header-content">
@@ -767,36 +561,6 @@
           <p><span class="prompt">></span> Currently developing my skills in ethical hacking, penetration testing, and security fundamentals.</p>
           <p><span class="prompt">></span> My goal is to become a skilled security professional through continuous learning and hands-on practice.</p>
           <p><span class="prompt">></span> <span class="command">_</span></p>
-        </div>
-      </div>
-      
-      <div class="security-level">
-        <h3>System Security Level</h3>
-        <div class="level-gauge">
-          <div class="level-fill" id="securityLevel"></div>
-          <div class="level-text">SECURE</div>
-        </div>
-      </div>
-      
-      <div class="hacking-tools">
-        <div class="tool" id="scanTool">
-          <i class="fas fa-search"></i> Network Scanner
-        </div>
-        <div class="tool" id="crackTool">
-          <i class="fas fa-unlock-alt"></i> Password Cracker
-        </div>
-        <div class="tool" id="exploitTool">
-          <i class="fas fa-bug"></i> Exploit Finder
-        </div>
-      </div>
-      
-      <div class="password-cracker">
-        <h3>Password Cracker Simulator</h3>
-        <div class="cracker-display" id="crackerDisplay">Ready to crack...</div>
-        <div class="cracker-controls">
-          <button class="cracker-btn" id="startCrack">Start Attack</button>
-          <button class="cracker-btn" id="stopCrack">Stop Attack</button>
-          <button class="cracker-btn" id="resetCrack">Reset</button>
         </div>
       </div>
     </section>
@@ -904,7 +668,7 @@
               <div class="dot"></div>
             </div>
           </div>
-          <p>15 Machines Completed</p>
+          <p>5 Machines Completed</p>
         </div>
         
         <div class="ctf-card" data-skill="bugbounty">
@@ -999,9 +763,9 @@
   <footer>
     <div class="container">
       <div class="social-links">
-        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="https://github.com/epedev" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/alazar-elias-77564a258/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/alazar_el" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
       </div>
       <p>&copy; 2026 Epedev Sec | Cybersecurity. All rights reserved.</p>
       <p>This system is secured. Unauthorized access is prohibited.</p>
@@ -1093,83 +857,6 @@
           link.classList.remove('active');
           if (link.getAttribute('href').substring(1) === current) {
             link.classList.add('active');
-          }
-        });
-      });
-      
-      // Security level animation
-      const securityLevel = document.getElementById('securityLevel');
-      let level = 70;
-      setInterval(() => {
-        level = 70 + Math.random() * 10;
-        securityLevel.style.width = level + '%';
-      }, 2000);
-      
-      // Password cracker simulation
-      const crackerDisplay = document.getElementById('crackerDisplay');
-      const startBtn = document.getElementById('startCrack');
-      const stopBtn = document.getElementById('stopCrack');
-      const resetBtn = document.getElementById('resetCrack');
-      let crackInterval;
-      
-      startBtn.addEventListener('click', function() {
-        crackerDisplay.innerHTML = 'Starting brute force attack...<br>';
-        clearInterval(crackInterval);
-        
-        crackInterval = setInterval(() => {
-          const passwords = [
-            'admin', 'password', '123456', 'qwerty', 'letmein', 
-            'welcome', 'monkey', 'sunshine', 'password1', 'football'
-          ];
-          const attempts = [
-            'Trying password: ' + passwords[Math.floor(Math.random() * passwords.length)],
-            'Attempting dictionary attack...',
-            'Testing common credentials...',
-            'Brute forcing with character set a-z0-9...',
-            'Checking for weak passwords...',
-            'Testing default credentials...'
-          ];
-          
-          const randomAttempt = attempts[Math.floor(Math.random() * attempts.length)];
-          crackerDisplay.innerHTML += '> ' + randomAttempt + '<br>';
-          crackerDisplay.scrollTop = crackerDisplay.scrollHeight;
-        }, 800);
-      });
-      
-      stopBtn.addEventListener('click', function() {
-        clearInterval(crackInterval);
-        crackerDisplay.innerHTML += '> Attack stopped by user<br>';
-      });
-      
-      resetBtn.addEventListener('click', function() {
-        clearInterval(crackInterval);
-        crackerDisplay.innerHTML = 'Ready to crack...<br>';
-      });
-      
-      // Hacking tools functionality
-      const tools = document.querySelectorAll('.tool');
-      
-      tools.forEach(tool => {
-        tool.addEventListener('click', function() {
-          tools.forEach(t => t.classList.remove('active'));
-          this.classList.add('active');
-          
-          const toolId = this.id;
-          
-          if (toolId === 'scanTool') {
-            const scan = document.getElementById('scanAnimation');
-            scan.style.display = 'block';
-            scan.style.top = '0';
-            scan.style.transition = 'none';
-            
-            setTimeout(() => {
-              scan.style.top = '100%';
-              scan.style.transition = 'top 3s linear';
-            }, 10);
-            
-            setTimeout(() => {
-              scan.style.display = 'none';
-            }, 3100);
           }
         });
       });
