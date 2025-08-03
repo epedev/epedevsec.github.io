@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Epedev Sec</title>
-  <link rel="icon" type="image/x-icon" href="/image/shield.png">
+  <title> Epedev Sec | Cybersecurity | Web Security Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
   <style>
@@ -16,6 +15,9 @@
       --terminal-bg: rgba(15, 15, 15, 0.9);
       --text: #ccc;
       --glow: 0 0 8px var(--primary), 0 0 16px rgba(0, 255, 0, 0.3);
+      --whatsapp: #25D366;
+      --telegram: #0088cc;
+      --discord: #7289DA;
     }
 
     * {
@@ -131,7 +133,7 @@
       padding: 1rem 0;
       position: sticky;
       top: 0;
-      z-index: 1000; /* Increased z-index for better visibility */
+      z-index: 1000;
       border-bottom: 1px solid rgba(0, 255, 0, 0.2);
       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
     }
@@ -187,7 +189,7 @@
     section {
       padding: 4rem 0;
       border-bottom: 1px solid rgba(0, 255, 0, 0.1);
-      scroll-margin-top: 100px; /* Ensure sections don't hide under nav */
+      scroll-margin-top: 100px;
     }
 
     section:last-child {
@@ -397,6 +399,7 @@
       gap: 30px;
       margin: 20px 0;
       padding: 20px;
+      flex-wrap: wrap;
     }
 
     .social-icon {
@@ -415,11 +418,26 @@
     }
 
     .social-icon:hover {
-      color: var(--primary);
       transform: translateY(-5px) scale(1.1);
       box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
       border-color: var(--primary);
       background-color: rgba(0, 60, 0, 0.3);
+    }
+
+    /* Specific colors for new social icons */
+    .social-icon.whatsapp:hover {
+      color: var(--whatsapp);
+      box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+    }
+    
+    .social-icon.telegram:hover {
+      color: var(--telegram);
+      box-shadow: 0 0 20px rgba(0, 136, 204, 0.4);
+    }
+    
+    .social-icon.discord:hover {
+      color: var(--discord);
+      box-shadow: 0 0 20px rgba(114, 137, 218, 0.4);
     }
 
     .social-links-container {
@@ -671,6 +689,11 @@
           <a href="https://github.com/epedev" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
           <a href="https://www.linkedin.com/in/alazar-elias-77564a258/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
           <a href="https://x.com/alazar_el" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+          
+          <!-- New social media icons -->
+          <a href="https://wa.me/yourwhatsappnumber" target="_blank" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://t.me/yourtelegram" target="_blank" class="social-icon telegram"><i class="fab fa-telegram"></i></a>
+          <a href="https://discordapp.com/users/yourdiscord" target="_blank" class="social-icon discord"><i class="fab fa-discord"></i></a>
         </div>
       </div>
     </section>
