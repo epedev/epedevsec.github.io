@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EPEdev · (not a) Cyber Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ─── same styles as before, but I've trimmed the comments ─── */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',system-ui,sans-serif; background:#0a0a0f; color:#e0e0e0; line-height:1.6; min-height:100vh; overflow-x:hidden; }
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:#0a0a0f; }
+    ::-webkit-scrollbar-thumb { background:#00ff41; border-radius:8px; }
+    .scan-overlay { position:fixed; inset:0; pointer-events:none; z-index:999; background:repeating-linear-gradient(0deg, transparent 0px,transparent 3px,rgba(0,255,65,0.015) 3px,rgba(0,255,65,0.015) 6px); animation:scan 10s linear infinite; }
+    @keyframes scan { 0%{transform:translateY(-100%)} 100%{transform:translateY(100vh)} }
+    .glow-line { height:1px; background:linear-gradient(90deg,transparent,#00ff41,#00d4ff,#b347ea,transparent); opacity:0.3; max-width:80%; margin:0 auto; }
+    .container { max-width:1100px; margin:0 auto; padding:0 1.5rem; }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:1.5rem 0; border-bottom:1px solid rgba(0,255,65,0.08); flex-wrap:wrap; gap:0.75rem; }
+    .logo { font-family:'JetBrains Mono',monospace; font-size:1.4rem; font-weight:600; color:#00ff41; letter-spacing:-0.5px; text-decoration:none; display:flex; align-items:center; gap:0.4rem; }
+    .logo span { color:#00d4ff; }
+    .nav-links { display:flex; gap:2rem; list-style:none; font-size:0.9rem; font-weight:500; flex-wrap:wrap; }
+    .nav-links a { color:#a0a0b0; text-decoration:none; transition:color 0.25s; position:relative; }
+    .nav-links a::after { content:''; position:absolute; left:0; bottom:-4px; width:0; height:2px; background:#00ff41; transition:width 0.3s; }
+    .nav-links a:hover { color:#00ff41; }
+    .nav-links a:hover::after { width:100%; }
+    .hero { display:flex; flex-direction:column; align-items:flex-start; padding:4rem 0 3rem; animation:revealUp 0.7s ease both; }
+    .hero-badge { font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#00d4ff; background:rgba(0,212,255,0.08); border:1px solid rgba(0,212,255,0.15); padding:0.25rem 1rem; border-radius:40px; letter-spacing:0.3px; margin-bottom:1.25rem; }
+    .hero h1 { font-size:clamp(2.6rem,8vw,4.8rem); font-weight:700; line-height:1.05; letter-spacing:-1.5px; margin-bottom:0.5rem; }
+    .hero h1 .highlight { background:linear-gradient(135deg,#00ff41,#00d4ff,#b347ea); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .hero .subtitle { font-size:1.2rem; color:#8888aa; max-width:540px; margin-bottom:2rem; font-weight:400; }
+    .hero .subtitle .cursor { display:inline-block; width:2px; height:1.2rem; background:#00ff41; animation:blink 1s step-end infinite; vertical-align:text-bottom; margin-left:2px; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; }
+    .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.7rem 1.8rem; border-radius:40px; font-weight:600; font-size:0.95rem; text-decoration:none; transition:all 0.3s; border:none; cursor:pointer; }
+    .btn-primary { background:#00ff41; color:#0a0a0f; box-shadow:0 0 20px rgba(0,255,65,0.15); }
+    .btn-primary:hover { background:#00e639; box-shadow:0 0 30px rgba(0,255,65,0.25); transform:scale(1.02); }
+    .btn-outline { background:transparent; color:#00d4ff; border:1px solid rgba(0,212,255,0.25); }
+    .btn-outline:hover { background:rgba(0,212,255,0.06); border-color:#00d4ff; }
+    .section-title { font-size:1.8rem; font-weight:600; letter-spacing:-0.5px; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.6rem; }
+    .section-title .accent { color:#00ff41; font-family:'JetBrains Mono',monospace; font-size:0.9rem; font-weight:400; opacity:0.6; }
+    .section-sub { color:#7777aa; margin-bottom:2.5rem; font-size:1rem; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; }
+    .about-text p { color:#b0b0cc; margin-bottom:1.25rem; font-size:1rem; }
+    .stats { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .stat-card { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); border-radius:12px; padding:1.25rem; text-align:center; transition:border-color 0.3s; }
+    .stat-card:hover { border-color:rgba(0,255,65,0.15); }
+    .stat-number { font-family:'JetBrains Mono',monospace; font-size:2rem; font-weight:600; color:#00ff41; }
+    .stat-label { font-size:0.8rem; color:#7777aa; margin-top:0.15rem; }
+    .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1.25rem; }
+    .skill-item { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); border-radius:10px; padding:1rem 0.75rem; text-align:center; font-weight:500; font-size:0.9rem; color:#c0c0dd; transition:all 0.3s; cursor:default; }
+    .skill-item:hover { border-color:rgba(0,255,65,0.2); background:rgba(0,255,65,0.03); transform:translateY(-2px); color:#00ff41; }
+    .skill-item .icon { display:block; font-size:1.5rem; margin-bottom:0.3rem; }
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.75rem; }
+    .project-card { background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.04); border-radius:14px; padding:1.75rem 1.5rem; transition:all 0.35s; text-decoration:none; color:inherit; display:block; }
+    .project-card:hover { border-color:rgba(0,255,65,0.15); background:rgba(0,255,65,0.02); transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.5); }
+    .project-card .emoji { font-size:2rem; margin-bottom:0.5rem; display:block; }
+    .project-card h3 { font-size:1.15rem; font-weight:600; margin-bottom:0.3rem; color:#eee; }
+    .project-card p { color:#8888aa; font-size:0.9rem; margin-bottom:1rem; }
+    .project-tag { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:#00d4ff; background:rgba(0,212,255,0.06); padding:0.15rem 0.7rem; border-radius:20px; border:1px solid rgba(0,212,255,0.06); margin-right:0.35rem; margin-bottom:0.25rem; }
+    .contact-card { background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.04); border-radius:16px; padding:2.5rem 2rem; text-align:center; max-width:600px; margin:0 auto; }
+    .contact-card p { color:#8888aa; margin-bottom:1.75rem; }
+    .contact-links { display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; }
+    .contact-links a { color:#b0b0cc; text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; font-size:0.9rem; transition:color 0.25s; padding:0.4rem 0.8rem; border-radius:30px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); }
+    .contact-links a:hover { color:#00ff41; border-color:rgba(0,255,65,0.1); }
+    footer { margin-top:5rem; padding:2rem 0 1.5rem; border-top:1px solid rgba(255,255,255,0.03); text-align:center; color:#555577; font-size:0.8rem; }
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:0.08s; }
+    .reveal-delay-2 { transition-delay:0.16s; }
+    .reveal-delay-3 { transition-delay:0.24s; }
+    .reveal-delay-4 { transition-delay:0.32s; }
+    @keyframes revealUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    @media (max-width:768px) { .about-grid{grid-template-columns:1fr} .stats{grid-template-columns:1fr 1fr} .hero{padding:2.5rem 0 2rem} nav{flex-direction:column;align-items:flex-start} .nav-links{gap:1.25rem;font-size:0.85rem} .contact-card{padding:1.75rem 1.25rem} .projects-grid{grid-template-columns:1fr} .skills-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))} }
+    @media (max-width:480px) { .hero-actions{flex-direction:column;width:100%} .hero-actions .btn{justify-content:center} .stats{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <div class="scan-overlay" aria-hidden="true"></div>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">&lt;EPE<span>dev</span>&gt;</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero container">
+    <span class="hero-badge">✦ Web Security • Threat Intelligence • Linux ✦</span>
+    <h1>
+      Aspiring Penetration Tester &<br />
+      <span class="highlight">Cybersecurity Researcher</span>
+    </h1>
+    <p class="subtitle">
+      Focused on Web Application Security, Threat Intelligence, and Offensive Security. Currently building security tools, developing a Honeypot Intelligence Platform, and documenting my cybersecurity journey through hands-on projects.
+      <span class="cursor"></span>
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary"><i data-lucide="sparkles"></i> My Labs</a>
+      <a href="#contact" class="btn btn-outline"><i data-lucide="message-circle"></i> Contact Me</a>
+    </div>
+  </section>
+
+  <div class="container"><div class="glow-line"></div></div>
+
+  <!-- ABOUT -->
+  <section id="about" class="container" style="padding:4rem 0 3rem;">
+    <div class="section-title reveal"><span class="accent">#</span> About</div>
+    <div class="about-grid">
+      <div class="about-text reveal reveal-delay-1">
+        <p>I'm Alazar Elias, an aspiring penetration tester passionate about offensive security, web application testing, and threat intelligence. I enjoy understanding how systems work, identifying security weaknesses, and building tools that help defenders better understand attacker behavior.</p>
+        <p>I am continuously expanding my skills through bug bounty hunting, Hack The Box, and personal projects including a Honeypot Intelligence Platform. My long-term goal is to become a professional penetration tester while building privacy-focused AI systems.</p>
+      </div>
+      <div class="stats reveal reveal-delay-2">
+        <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Bug reports submitted</div></div>
+        <div class="stat-card"><div class="stat-number">1</div><div class="stat-label">Wi‑Fi driver fixed (so far)</div></div>
+        <div class="stat-card"><div class="stat-number">∞</div><div class="stat-label">Swear words per config file</div></div>
+        <div class="stat-card"><div class="stat-number">100%</div><div class="stat-label">Paranoid about privacy</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="container" style="padding:2rem 0 3rem;">
+    <div class="section-title reveal"><span class="accent">/</span> Toolbox</div>
+    <p class="section-sub reveal reveal-delay-1">What I use to break and fix things.</p>
+    <div class="skills-grid">
+      <div class="skill-item reveal reveal-delay-1"><span class="icon">🐧</span> Linux (Ubuntu)</div>
+      <div class="skill-item reveal reveal-delay-2"><span class="icon">🕸️</span> Networking (Wi-Fi, iptables)</div>
+      <div class="skill-item reveal reveal-delay-3"><span class="icon">🐍</span> Python / Flask</div>
+      <div class="skill-item reveal reveal-delay-4"><span class="icon">🤖</span> LLM fine‑tuning</div>
+      <div class="skill-item reveal reveal-delay-1"><span class="icon">📡</span> Burp Suite / Zap</div>
+      <div class="skill-item reveal reveal-delay-2"><span class="icon">🔐</span> OWASP top 10</div>
+      <div class="skill-item reveal reveal-delay-3"><span class="icon">📦</span> Docker / Compose</div>
+      <div class="skill-item reveal reveal-delay-4"><span class="icon">📈</span> OSINT / recon</div>
+    </div>
+  </section>
+
+  <!-- PROJECTS (now reflecting your actual interests) -->
+  <section id="projects" class="container" style="padding:2rem 0 3rem;">
+    <div class="section-title reveal"><span class="accent">*</span> Labs</div>
+    <p class="section-sub reveal reveal-delay-1">Current messes I'm proud of.</p>
+    <div class="projects-grid">
+      <a href="#" class="project-card reveal reveal-delay-1">
+        <span class="emoji">🖥️</span>
+        <h3>Honeypot Intelligence Platform</h3>
+        <p>An open-source platform for deploying honeypots, collecting attacker activity, analyzing indicators of compromise, and visualizing threat intelligence.</p>
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Threat Intelligence</span>
+        <span class="project-tag">Docker</span>
+      </a>
+      <a href="#" class="project-card reveal reveal-delay-2">
+        <span class="emoji">🐞</span>
+        <h3>Bug Bounty Journey</h3>
+        <p>Documenting reconnaissance methodologies, vulnerability research, automation scripts, and write-ups from public bug bounty programs.</p>
+        <span class="project-tag">Bugcrowd</span>
+        <span class="project-tag">Recon</span>
+        <span class="project-tag">Exploitation</span>
+      </a>
+      <a href="#" class="project-card reveal reveal-delay-3">
+        <span class="emoji">🧠</span>
+        <h3>Personal Portfolio</h3>
+        <p>A modern cybersecurity portfolio showcasing projects, write-ups, technical skills, and continuous learning in offensive security.</p>
+        <span class="project-tag">Next.js</span>
+        <span class="project-tag">Tailwind</span>
+        <span class="project-tag">Portfolio</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container" style="padding:2rem 0 3rem;">
+    <div class="section-title reveal"><span class="accent">@</span> Contact</div>
+    <p class="section-sub reveal reveal-delay-1">Interested in collaborating on cybersecurity projects, open-source tools, or discussing web application security? Feel free to reach out.</p>
+    <div class="contact-card reveal reveal-delay-2">
+      <p style="font-size:1.1rem;color:#ccccee;">✧  Reach out — I'm usually in `/var/log`  ✧</p>
+      <div class="contact-links">
+        <a href="mailto:hello@epedev.dev"><i data-lucide="mail"></i> Email</a>
+        <a href="#"><i data-lucide="github"></i> GitHub</a>
+        <a href="#"><i data-lucide="twitter"></i> Twitter</a>
+        <a href="https://linktr.ee/yourbugbounty" target="_blank"><i data-lucide="link"></i> Linktree</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 EPEdev · built with <span class="heart">♥</span> and <span style="color:#00ff41;">`sudo`</span></p>
+      <p style="margin-top:0.3rem;font-size:0.7rem;letter-spacing:0.3px;">
+        <span style="color:#00ff41;">//</span> Hack to Learn. Build to Protect.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    // Scroll reveal (same as before)
+    (function() {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, { threshold:0.1, rootMargin:'0px 0px -20px 0px' });
+      reveals.forEach(el => observer.observe(el));
+      setTimeout(() => {
+        reveals.forEach(el => {
+          if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+        });
+      }, 200);
+    })();
+  </script>
+</body>
+</html>
